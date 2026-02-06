@@ -21,7 +21,6 @@ def mainMenu():
     if menuInput == ('1'):
          os.system('cls')
          print('Game Start')
-         buzzer.on_buzz(controller_management)
+         buzzer.on_buzz(controller_management.buzzIn)
          buzzer.start_listening()
-
 

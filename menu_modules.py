@@ -13,6 +13,7 @@ def loadingLights(buzzer):
             for i in range(4):
                 buzzer.set_light(i, False)
                 time.sleep(0.5)
+
 def mainMenu():
     os.system('cls')
     print('Project Cortex\n\n\n\n')
@@ -25,5 +26,8 @@ def mainMenu():
          buzzer.start_listening()
     elif menuInput == ('2'):
          print('Not Added Yet')
+         time.sleep(1)
+         mainMenu()
     elif menuInput == ('3'):
          leaderboard.leaderboard_menu()
+         mainMenu()

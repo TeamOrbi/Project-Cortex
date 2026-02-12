@@ -1,7 +1,7 @@
 import pybuzzers
 import time
 import os
-import controller_management
+import controller_management, leaderboard
 buzzer = pybuzzers.get_all_buzzers()[0]
 
 def loadingLights(buzzer):
@@ -16,11 +16,14 @@ def loadingLights(buzzer):
 def mainMenu():
     os.system('cls')
     print('Project Cortex\n\n\n\n')
-    print(' 1) Start Game  2) Download Questions  3) Set Players  4) Exit')
+    print(' 1) Start Game  2) Download Questions  3) Leaderboard  4) Exit')
     menuInput = input('>> ')
     if menuInput == ('1'):
          os.system('cls')
          print('Game Start')
          buzzer.on_buzz(controller_management.buzzIn)
          buzzer.start_listening()
-
+    elif menuInput == ('2'):
+         print('Not Added Yet')
+    elif menuInput == ('3'):
+         leaderboard.leaderboard_menu()

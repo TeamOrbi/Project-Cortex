@@ -1,14 +1,14 @@
-from typingEffect import type_message
-import updater, menu_modules, controller_management
+from orbiLib import updateCheck, type_message
+import menu_modules, controller_management
 import pybuzzers
 import time
 
 
-version = '0.0.2'
+version = '0.0.3'
 
 type_message('A Team Orbi Production', 0.1)
 type_message('Checking for updates...')
-updater.updateCheck(version)
+updateCheck(version)
 buzzer = pybuzzers.get_all_buzzers()[0]
 menu_modules.loadingLights(buzzer)
 print('Buzzers Connected')

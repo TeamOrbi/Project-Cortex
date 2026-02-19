@@ -9,6 +9,7 @@ _buzz_cooldown_seconds = 0.75
 _arm_time = 0.0
 _arm_delay_seconds = 1.0
 _last_buzzer_id = None
+end_game_requested = False
 
 
 def _set_buzzer_light(buzzer_set: pybuzzers.BuzzerSet, buzzer: int, state: bool):
@@ -18,8 +19,10 @@ def _set_buzzer_light(buzzer_set: pybuzzers.BuzzerSet, buzzer: int, state: bool)
     except Exception:
         pass
 
+
+
 def buzzIn(buzzer_set: pybuzzers.BuzzerSet, buzzer: int):
-    global ControllerInput, _arm_time, _last_buzzer_id
+    global ControllerInput, _arm_time, _last_buzzer_id, end_game_requested
     now = time.time()
     if now - _arm_time < _arm_delay_seconds:
         return
@@ -27,18 +30,26 @@ def buzzIn(buzzer_set: pybuzzers.BuzzerSet, buzzer: int):
     if now - last < _buzz_cooldown_seconds:
         return
     _last_buzz_time[buzzer] = now
-    if ControllerInput == True:
+    if ControllerInput:
         ControllerInput = False
         _last_buzzer_id = buzzer
         _set_buzzer_light(buzzer_set, buzzer, True)
         print(f"Player {buzzer} buzzed!")
-        isCorrect = input('Did they get it correct? (y/n) ')
-        if isCorrect and isCorrect.lower() == 'y':
+        isCorrect = input('Did they get it correct? (y/n, q to end) ').lower()
+        if isCorrect in ('q', 'quit', 'exit'):
+            buzzer_set.stop_listening()
+            end_game_requested = True
+            return
+        if isCorrect == 'y':
             leaderboard.playerAdjust(buzzer)
             if options.show_leaderboard:
                 leaderboard.read_leaderboard()
         # Lock input until the host advances to the next question.
-        input('Press Enter to enable buzzing for the next question...')
+        advance = input('Press Enter to enable buzzing for the next question (or q to end)...').lower()
+        if advance in ('q', 'quit', 'exit'):
+            buzzer_set.stop_listening()
+            end_game_requested = True
+            return
         if _last_buzzer_id is not None:
             _set_buzzer_light(buzzer_set, _last_buzzer_id, False)
             _last_buzzer_id = None

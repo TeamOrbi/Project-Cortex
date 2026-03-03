@@ -1,14 +1,17 @@
-from orbiLib import updateCheck, type_message
+from orbiLib import updateCheck, type_message, greetingMessage, libUpdate
 import menu_modules, controller_management, leaderboard
 import pybuzzers
 import time
 
 
 version = '0.1.0'
+orbiProject = 'Cortex'
 
 type_message('A Team Orbi Production', 0.1)
+greetingMessage(orbiProject)
 type_message('Checking for updates...')
-updateCheck(version)
+updateCheck(version, orbiProject)
+libUpdate()
 time.sleep(0.2)
 type_message('Checking Options...')
 ##Add options that need checking here

@@ -3,6 +3,7 @@ import time
 import os
 import sys
 import controller_management, leaderboard
+import questionManagement
 buzzer = pybuzzers.get_all_buzzers()[0]
 
 def loadingLights(buzzer):
@@ -40,11 +41,17 @@ def mainMenu():
             mainMenu()
             return
         elif gameSelect == ('2'):
-            print('Not added yet. Coming Soon!')
+            ## COME BACK TO THIS ONCE QUESTIONS HAVE BEEN IMPLIMENTED
+            os.system('cls')
+            print('Multiquestion Mode')
+            questionManagement.reset_question_pool()
+            controller_management.show_random_question()
+            buzzer.on_button_down(controller_management.multiBuzz)
             time.sleep(1)
             mainMenu()
     elif menuInput == ('2'):
-        print('Not Added Yet')
+        os.system('cls')
+        print('Contacting the TeamOrbi servers...')
         time.sleep(1)
         mainMenu()
     elif menuInput == ('3'):

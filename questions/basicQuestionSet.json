@@ -1,0 +1,30 @@
+{
+  "quiz": [
+    {
+      "question": "What is the capital of Australia?",
+      "options": [
+        "Sydney",
+        "Melbourne",
+        "Canberra",
+        "Perth"
+      ],
+      "correct_index": 2,
+      "points": 10,
+      "time_limit": 15,
+      "difficulty": "easy"
+    },
+    {
+      "question": "What does CPU stand for?",
+      "options": [
+        "Central Processing Unit",
+        "Computer Personal Unit",
+        "Central Program Utility",
+        "Control Processing Unit"
+      ],
+      "correct_index": 0,
+      "points": 20,
+      "time_limit": 10,
+      "difficulty": "medium"
+    }
+  ]
+}

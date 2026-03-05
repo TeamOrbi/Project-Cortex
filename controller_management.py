@@ -2,6 +2,7 @@ import pybuzzers
 import time
 import leaderboard
 import options
+import questionManagement
 
 ControllerInput = True
 _last_buzz_time = {}
@@ -10,6 +11,20 @@ _arm_time = 0.0
 _arm_delay_seconds = 1.0
 _last_buzzer_id = None
 end_game_requested = False
+
+
+def show_random_question():
+    question_data = questionManagement.get_random_question()
+    if not question_data:
+        print("No questions available. Add JSON files in the questions folder.")
+        return
+
+    print("\n--- Random Question ---")
+    print(question_data.get("question", ""))
+    options_list = question_data.get("options", [])
+    for idx, option in enumerate(options_list, start=1):
+        print(f"  {idx}) {option}")
+    print("-----------------------\n")
 
 
 def _set_buzzer_light(buzzer_set: pybuzzers.BuzzerSet, buzzer: int, state: bool):
@@ -57,3 +72,9 @@ def buzzIn(buzzer_set: pybuzzers.BuzzerSet, buzzer: int):
         _last_buzz_time.clear()
         ControllerInput = True
 
+
+def multiBuzz(buzzer_set: pybuzzers.BuzzerSet, buzzer: int, button: int):
+    print(f"Player {buzzer} pressed {button}")
+    show_random_question()
+    
+    

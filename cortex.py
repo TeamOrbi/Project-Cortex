@@ -4,7 +4,7 @@ import pybuzzers
 import time
 
 
-version = '0.1.0'
+version = '0.1.1'
 
 type_message('A Team Orbi Production', 0.1)
 type_message('Checking for updates...')

@@ -4,8 +4,8 @@ import pybuzzers
 import time
 
 
-version = '0.1.1'
 orbiProject = 'Cortex'
+version = '0.1.1'
 
 type_message('A Team Orbi Production', 0.1)
 greetingMessage(orbiProject)

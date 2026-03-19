@@ -1,11 +1,11 @@
-from orbiLib import updateCheck, type_message, greetingMessage, libUpdate
-import menu_modules, controller_management, leaderboard
+from orbiLib import *
+import menu_modules, leaderboard
 import pybuzzers
 import time
 
 
 orbiProject = 'Cortex'
-version = '0.1.1'
+version = '0.1.2'
 
 type_message('A Team Orbi Production', 0.1)
 greetingMessage(orbiProject)
